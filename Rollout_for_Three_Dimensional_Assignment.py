@@ -320,18 +320,8 @@ def gurobi_solve(cost_matrix):
             for w in range(num_worker):
                 if (x[j][m][w].x>0):
                     assign[j][m]=w
-                
-
-    obj=obj.getValue()
-    print("solver",obj)
-    obj=0
-    for j in range(num_job):
-        for m in range(num_machine):
-            for w in range(num_worker):
-                if (x[j][m][w].x>0):
-                    obj+=cost_matrix[j][m][w]
                     
-
+    obj=obj.getValue()
     print("gurobi result:",obj,assign)
     return {"assign":assign,"obj":obj}
 
